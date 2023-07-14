@@ -5,7 +5,7 @@
 /* Find the minimum index for witch f is true or it.size() if none if true */
 template <typename T> ull binary_search(function<bool(T)> f, vector<T> it) {
   ull lower = 0;
-  ull upper = it.siz e();
+  ull upper = it.size();
   if (f(it[lower])) {
     return lower;
   }
