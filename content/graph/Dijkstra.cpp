@@ -1,7 +1,9 @@
 #pragma once
 
-#include <Graph.cpp>
 #include <IncludeTemplate.hpp>
+
+#include <Graph.cpp>
+#include <Reverse_priority_queue.cpp>
 
 /* The return value is a vector of size n, where the i-th element is the
  * vertex that precedes the i-th vertex in the shortest path from s to i.
@@ -13,16 +15,13 @@ vector<optional<Vertex>> Dijkstra(WeightedGraph g, Vertex s) {
   vector<Distance> dist(g.n, numeric_limits<Distance>::max());
   dist[s] = 0;
 
-  priority_queue<
-      tuple<Distance, Vertex, Vertex>, vector<tuple<Distance, Vertex, Vertex>>,
-      greater<tuple<Distance, Vertex, Vertex>>>
-      pq;
+  rpriority_queue<tuple<Distance, Vertex, Vertex>> q;
 
-  pq.push({0, s, s});
+  q.push({0, s, s});
 
-  while (!pq.empty()) {
-    auto [d, v, by] = pq.top();
-    pq.pop();
+  while (!q.empty()) {
+    auto [d, v, by] = q.top();
+    q.pop();
     if (prev[v].has_value()) {
       continue;
     }
@@ -31,7 +30,7 @@ vector<optional<Vertex>> Dijkstra(WeightedGraph g, Vertex s) {
 
     for (auto [u, w] : g.adj[v]) {
       if (!prev[u].has_value()) {
-        pq.push({d + w, u, v});
+        q.push({d + w, u, v});
       }
     }
   }
