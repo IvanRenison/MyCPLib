@@ -6,8 +6,8 @@
 
 vector<bool> prime(MAXN, true);
 void sieve(void) {
-  prime[1] = false;
-  for (ull i = 0; i < MAXN; i += 2) {
+  prime[0] = false, prime[1] = false;
+  for (ull i = 4; i < MAXN; i += 2) {
     prime[i] = false;
   }
 
