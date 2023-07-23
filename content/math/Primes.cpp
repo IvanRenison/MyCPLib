@@ -4,7 +4,6 @@
 
 #define MAXN 100001
 
-/* For each number until N get the smallest prime that divides it */
 vector<ull> prime(MAXN, true);
 void sieve(void) {
   prime[1] = false;
