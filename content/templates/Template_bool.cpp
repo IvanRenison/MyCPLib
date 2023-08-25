@@ -6,7 +6,7 @@ using namespace std;
 
 typedef unsigned long long ull;
 typedef long long ll;
-#define fore(i, a, b) for (ull i = a; i < b; i++)
+#define fore(i, a, b) for (ull i = a, gmat = b; i < gmat; i++)
 
 
 bool solve(void) {
