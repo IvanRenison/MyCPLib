@@ -26,12 +26,12 @@ template <typename T> struct Matrix {
     }
   }
 
-  T& operator[](pair<ull, ull> p) {
+  T& operator[](uu p) {
     auto [i, j] = p;
     return data[j * n + i];
   }
 
-  T operator[](pair<ull, ull> p) const {
+  T operator[](uu p) const {
     auto [i, j] = p;
     return data[j * n + i];
   }
@@ -40,8 +40,8 @@ template <typename T> struct Matrix {
     data[j * n + i] = val;
   }
 
-  vector<pair<ull, ull>> neighbors(ull i, ull j) {
-    vector<pair<ull, ull>> ans;
+  vuu neighbors(ull i, ull j) {
+    vuu ans;
     if (i > 0) {
       ans.push_back({i - 1, j});
     }
@@ -59,12 +59,12 @@ template <typename T> struct Matrix {
 };
 
 /* Make dfs from (i, j) and return all the positions visited */
-vector<pair<ull, ull>> dfs(Matrix<bool> mat, ull i, ull j) {
+vuu dfs(Matrix<bool> mat, ull i, ull j) {
   Matrix<bool> visited(mat.n, mat.m, false);
   visited.assign(i, j, true);
 
-  vector<pair<ull, ull>> ans = {{i, j}};
-  vector<pair<ull, ull>> s = {{i, j}};
+  vuu ans = {{i, j}};
+  vuu s = {{i, j}};
 
   while (!s.empty()) {
     auto [ni, nj] = s.back();

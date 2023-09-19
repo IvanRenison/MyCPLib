@@ -2,15 +2,15 @@
 
 #include <IncludeTemplate.hpp>
 
-pair<ull, vector<ull>> compress(vector<ull> xs) {
+pair<ull, vu> compress(vu xs) {
   ull n = xs.size();
 
-  map<ull, vector<ull>> xs_map;
+  map<ull, vu> xs_map;
   fore(i, 0, n) {
     xs_map[xs[i]].push_back(i);
   }
 
-  vector<ull> compressed_xs(n);
+  vu compressed_xs(n);
 
   ull i = 0;
   for (auto [x, ks] : xs_map) {
