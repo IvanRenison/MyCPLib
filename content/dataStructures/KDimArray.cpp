@@ -30,4 +30,16 @@ struct KDimArray {
     }
     return elems[idx];
   }
+
+  void nextIndex(vu& is) const {
+    ull n = is.size();
+    for(ull i = n-1; i < n; i--) {
+      is[i]++;
+      if (is[i] == ds[i]) {
+        is[i] = 0;
+      } else {
+        break;
+      }
+    }
+  }
 };
