@@ -30,15 +30,3 @@ typedef vector<iiiii> viiiii;
 #define all(x) x.begin(), x.end()
 #define sz(x) (x).size()
 #define DBG(x) cerr << #x << " = " << x << endl
-
-template <typename T> ostream &operator<<(ostream &out, const vector<T>& vs) {
-  ull N = vs.size():
-  fore(i, 0, N) {
-    out << vs[i];
-    if (i + 1 != N) {
-      out << ' ';
-    }
-  }
-  return out;
-}
-

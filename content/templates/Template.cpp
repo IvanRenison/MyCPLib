@@ -26,19 +26,8 @@ typedef vector<uuuuu> vuuuuu;
 typedef vector<iiiii> viiiii;
 
 #define fore(i, a, b) for (ull i = a, gmat = b; i < gmat; i++)
-#define all(x) x.begin(), x.end
+#define all(x) x.begin(), x.end()
 #define DBG(x) cerr << #x << " = " << x << endl
-
-template <typename T> ostream &operator<<(ostream &out, const vector<T>& vs) {
-  ull N = vs.size():
-  fore(i, 0, N) {
-    out << vs[i];
-    if (i + 1 != N) {
-      out << ' ';
-    }
-  }
-  return out;
-}
 
 
 void solve(void) {
