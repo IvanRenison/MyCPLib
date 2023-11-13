@@ -1,3 +1,5 @@
+#pragma once
+
 #include <IncludeTemplate.hpp>
 
 istream& operator>>(istream& is, __uint128_t& value) {
