@@ -25,6 +25,7 @@ typedef tuple<ull, ull, ull, ull, ull> uuuuu;
 typedef tuple<ll, ll, ll, ll, ll> iiiii;
 typedef vector<uuuuu> vuuuuu;
 typedef vector<iiiii> viiiii;
+typedef long double ld;
 
 #define fore(i, a, b) for (ull i = a, gmat = b; i < gmat; i++)
 #define all(x) x.begin(), x.end()
