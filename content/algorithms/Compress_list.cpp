@@ -2,7 +2,7 @@
 
 #include <IncludeTemplate.hpp>
 
-pair<ull, vu> compress(vu xs) {
+pair<ull, vu> compress(const vu& xs) {
   ull n = xs.size();
 
   map<ull, vu> xs_map;
