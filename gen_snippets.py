@@ -11,15 +11,16 @@ class SingleSnippet(TypedDict):
 Snippets = dict[str, SingleSnippet]
 
 
-def get_snippet(file_path: str) -> Snippets:
+def get_snippet(file_path: str, template: bool = False) -> Snippets:
   with open(file_path, 'r') as f:
     code: str = f.read()
   file_name: str = os.path.basename(file_path)
   name: str = os.path.splitext(file_name)[0]
-  this_prefix: str = prefix + name
+  this_prefix: str = name if template else prefix + name
   code = code.replace("#pragma once", "")
   code = code.replace("#include <IncludeTemplate.hpp>", "")
-  code = code.strip()
+  if not template:
+    code = code.strip()
   return {
     file_name: {
       'prefix': this_prefix,
@@ -52,16 +53,15 @@ def main():
   snippets_file_paths: list[str] = []
 
   for root, _, files in os.walk(code_dir):
-    if os.path.basename(root) == 'templates':
-      continue
+    template: bool = os.path.basename(root) == 'templates'
     for file in files:
       file_path: str = os.path.join(root, file)
       name, ext = os.path.splitext(file_path)
       name = os.path.basename(name)
-      if ext not in ['.hpp', '.cpp']:
+      if ext not in ['.hpp', '.cpp'] or name == 'IncludeTemplate':
         continue
       print(f"Generating snippet for {name}")
-      snippet: Snippets = get_snippet(file_path)
+      snippet: Snippets = get_snippet(file_path, template)
       output_file: str = os.path.join(cpp_snippets_dir, name + '.json')
       create_snippet_file(snippet, output_file)
       snippets_file_paths.append(output_file)
