@@ -2,7 +2,8 @@
 
 #include <IncludeTemplate.hpp>
 
-template <typename T> struct Matrix {
+template <typename T>
+struct Matrix {
   ull n, m;
   vector<T> data;
 
@@ -26,6 +27,8 @@ template <typename T> struct Matrix {
     }
   }
 
+  template <T>
+    requires(!is_same<T, bool>::value)
   T& operator[](uu p) {
     auto [i, j] = p;
     return data[j * n + i];
@@ -57,6 +60,11 @@ template <typename T> struct Matrix {
     return ans;
   }
 };
+
+/* template <typename T> requires (!is_same<T, bool>::value) T operator[](Matrix<T> m, uu p) {
+  auto [i, j] = p;
+  return m.data[j * n + i];
+} */
 
 /* Make dfs from (i, j) and return all the positions visited */
 vuu dfs(Matrix<bool> mat, ull i, ull j) {
