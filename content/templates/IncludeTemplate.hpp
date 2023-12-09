@@ -39,3 +39,6 @@ typedef vector<bool> vb;
 #define all(x) x.begin(), x.end()
 #define sz(x) (x).size()
 #define DBG(x) cerr << #x << " = " << x << endl
+
+const ull inf = 1ull << 60;
+const ld eps = 1e-7;

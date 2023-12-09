@@ -36,7 +36,11 @@ typedef vector<bool> vb;
 
 #define fore(i, a, b) for (ull i = a, gmat = b; i < gmat; i++)
 #define all(x) x.begin(), x.end()
+#define sz(x) (x).size()
 #define DBG(x) cerr << #x << " = " << x << endl
+
+const ull inf = 1ull << 60;
+const ld eps = 1e-7;
 
 
 void solve(void) {
