@@ -14,13 +14,13 @@ ll euclid(ll a, ll b, ll& x, ll& y) {
 constexpr ull mod = (1e9 + 7);
 struct Mod {
   ull x;
-  Mod(ull xx) : x(xx) {}
+  Mod(ull xx) : x(xx % mod) {}
   Mod() : x(0) {}
   Mod operator+(Mod b) {
-    return Mod((x + b.x) % mod);
+    return Mod((x + b.x) >= mod ? x + b.x - mod : x + b.x);
   }
   Mod operator-(Mod b) {
-    return Mod((x + mod - b.x + mod) % mod);
+    return Mod(x >= b.x ? x - b.x : x + mod - b.x);
   }
   Mod operator*(Mod b) {
     return Mod((x * b.x) % mod);
@@ -83,9 +83,7 @@ struct Mod {
     return os;
   }
   friend istream& operator>>(istream& is, Mod& m) {
-    ull x;
-    is >> x;
-    m = Mod(x);
+    is >> m.x;
     return is;
   }
 
@@ -96,3 +94,11 @@ struct Mod {
     return x;
   }
 };
+
+typedef vector<Mod> vm;
+typedef pair<Mod, Mod> mm;
+typedef vector<mm> vmm;
+typedef tuple<Mod, Mod, Mod> mmm;
+typedef vector<mmm> vmmm;
+typedef tuple<Mod, Mod, Mod, Mod> mmmm;
+typedef vector<mmmm> vmmmm;
