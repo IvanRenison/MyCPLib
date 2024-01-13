@@ -2,43 +2,43 @@
 
 #include <IncludeTemplate.hpp>
 
-#define MAXN 100001
+const ull MAXN = 1e6;
 
 /* For each number until N get the smallest prime that divides it */
-vu smallest_prime_factors(MAXN);
+vu small_primes(MAXN + 1);
 void sieve(void) {
-  for (ull i = 1; i < MAXN; i++) {
+  for (ull i = 1; i < MAXN + 1; i++) {
     if (i % 2 == 0) {
-      smallest_prime_factors[i] = 2;
+      small_primes[i] = 2;
     } else {
-      smallest_prime_factors[i] = i;
+      small_primes[i] = i;
     }
   }
 
-  for (ull i = 3; i * i < MAXN; i += 2) {
-    if (smallest_prime_factors[i] == i) {
-      for (ull j = i * i; j < MAXN; j += i) {
-        if (smallest_prime_factors[j] == j) {
-          smallest_prime_factors[j] = i;
+  for (ull i = 3; i * i < MAXN + 1; i += 2) {
+    if (small_primes[i] == i) {
+      for (ull j = i * i; j < MAXN + 1; j += i) {
+        if (small_primes[j] == j) {
+          small_primes[j] = i;
         }
       }
     }
   }
 }
 
-/* smallest_prime_factors has to have the smallest prime factor of each number until x */
+/* small_primes has to have the smallest prime factor of each number until x */
 vuu prime_factors(ull x) {
   if (x == 1) {
     return {};
   } else {
-    vuu factors = {{smallest_prime_factors[x], 1}};
-    x = ull(x / smallest_prime_factors[x]);
+    vuu factors = {{small_primes[x], 1}};
+    x = ull(x / small_primes[x]);
     while (x != 1) {
-      if (smallest_prime_factors[x] != factors.back().first) {
-        factors.push_back({smallest_prime_factors[x], 0});
+      if (small_primes[x] != factors.back().first) {
+        factors.push_back({small_primes[x], 0});
       }
       factors.back().second++;
-      x = ull(x / smallest_prime_factors[x]);
+      x = ull(x / small_primes[x]);
     }
     return factors;
   }
