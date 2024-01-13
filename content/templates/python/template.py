@@ -6,7 +6,8 @@ def solve():
 def main():
 
 
-    print(solve())
+    ans = solve()
+    print(ans)
 
 
 if __name__ == '__main__':

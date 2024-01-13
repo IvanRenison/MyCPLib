@@ -8,7 +8,8 @@ def main():
     for _ in range(t):
 
 
-        print(solve1())
+        ans = solve1()
+        print(ans)
 
 
 if __name__ == '__main__':
