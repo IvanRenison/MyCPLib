@@ -53,8 +53,7 @@ struct Matrix {
     data[j * n + i] = val;
   }
 
-  template <T>
-    requires(!is_same<T, bool>::value)
+  requires(!is_same<T, bool>::value)
   T& operator[](uu p) {
     auto [i, j] = p;
     return data[j * n + i];
