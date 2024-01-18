@@ -27,22 +27,6 @@ struct Matrix {
     }
   }
 
-  template <T>
-    requires(!is_same<T, bool>::value)
-  T& operator[](uu p) {
-    auto [i, j] = p;
-    return data[j * n + i];
-  }
-
-  T operator[](uu p) const {
-    auto [i, j] = p;
-    return data[j * n + i];
-  }
-
-  void assign(ull i, ull j, T val) {
-    data[j * n + i] = val;
-  }
-
   vuu neighbors(ull i, ull j) {
     vuu ans;
     if (i > 0) {
@@ -59,12 +43,23 @@ struct Matrix {
     }
     return ans;
   }
-};
 
-/* template <typename T> requires (!is_same<T, bool>::value) T operator[](Matrix<T> m, uu p) {
-  auto [i, j] = p;
-  return m.data[j * n + i];
-} */
+  T operator[](uu p) const {
+    auto [i, j] = p;
+    return data[j * n + i];
+  }
+
+  void assign(ull i, ull j, T val) {
+    data[j * n + i] = val;
+  }
+
+  template <T>
+    requires(!is_same<T, bool>::value)
+  T& operator[](uu p) {
+    auto [i, j] = p;
+    return data[j * n + i];
+  }
+};
 
 /* Make dfs from (i, j) and return all the positions visited */
 vuu dfs(Matrix<bool> mat, ull i, ull j) {
