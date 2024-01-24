@@ -52,7 +52,8 @@ int main(void) {
   cin.tie(NULL), cout.tie(NULL);
 
 
-  if (solve()) {
+  bool ans = solve();
+  if (ans) {
     cout << "Yes\n";
   } else {
     cout << "No\n";

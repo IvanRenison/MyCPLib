@@ -57,7 +57,8 @@ int main(void) {
   fore(i, 0, t) {
 
 
-    if (solve1()) {
+    bool ans = solve1();
+    if (ans) {
       cout << "Yes\n";
     } else {
       cout << "No\n";
