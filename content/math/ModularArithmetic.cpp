@@ -16,13 +16,13 @@ struct Mod {
   ull x;
   Mod(ull xx) : x(xx % mod) {}
   Mod() : x(0) {}
-  Mod operator+(Mod b) {
+  Mod operator+(Mod b) const {
     return Mod((x + b.x) >= mod ? x + b.x - mod : x + b.x);
   }
-  Mod operator-(Mod b) {
+  Mod operator-(Mod b) const {
     return Mod(x >= b.x ? x - b.x : x + mod - b.x);
   }
-  Mod operator*(Mod b) {
+  Mod operator*(Mod b) const {
     return Mod((x * b.x) % mod);
   }
   Mod operator+=(Mod b) {
@@ -40,38 +40,38 @@ struct Mod {
   Mod operator--() {
     return *this = *this - Mod(1);
   }
-  bool operator==(Mod b) {
+  bool operator==(Mod b) const {
     return x == b.x;
   }
-  bool operator!=(Mod b) {
+  bool operator!=(Mod b) const {
     return x != b.x;
   }
-  bool operator<(Mod b) {
+  bool operator<(Mod b) const {
     return x < b.x;
   }
-  bool operator>(Mod b) {
+  bool operator>(Mod b) const {
     return x > b.x;
   }
-  bool operator<=(Mod b) {
+  bool operator<=(Mod b) const {
     return x <= b.x;
   }
-  bool operator>=(Mod b) {
+  bool operator>=(Mod b) const {
     return x >= b.x;
   }
 
-  Mod invert(Mod a) {
+  Mod invert(Mod a) const {
     ll x, y, g = euclid(a.x, mod, x, y);
     assert(g == 1);
     return Mod((x + mod) % mod);
   }
-  Mod operator^(ull e) {
+  Mod operator^(ull e) const {
     if (!e)
       return Mod(1);
     Mod r = *this ^ (e / 2);
     r = r * r;
     return e & 1 ? *this * r : r;
   }
-  Mod operator/(Mod b) {
+  Mod operator/(Mod b) const {
     return *this * invert(b);
   }
   Mod operator/=(Mod b) {
