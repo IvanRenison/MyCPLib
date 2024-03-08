@@ -35,8 +35,8 @@ typedef vector<dddd> vdddd;
 typedef vector<bool> vb;
 
 #define fore(i, a, b) for (ull i = a, gmat = b; i < gmat; i++)
-#define all(x) x.begin(), x.end()
-#define sz(x) (x).size()
+#define ALL(x) x.begin(), x.end()
+#define SZ(x) (x).size()
 #define DBG(x) cerr << #x << " = " << x << endl
 
 const ull inf = 1ull << 60;
