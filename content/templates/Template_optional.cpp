@@ -1,5 +1,13 @@
 //
 
+#ifndef ONLINE_JUDGE
+#define _GLIBCXX_DEBUG 1
+#define _GLIBCXX_DEBUG_PEDANTIC 1
+//#define _GLIBCXX_DEBUG_BACKTRACE 1
+#define _GLIBCXX_CONCEPT_CHECKS 1
+#define _GLIBCXX_SANITIZE_VECTOR 1
+#endif
+
 #include <bits/stdc++.h>
 
 using namespace std;
