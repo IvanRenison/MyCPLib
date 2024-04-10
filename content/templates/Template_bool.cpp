@@ -57,7 +57,7 @@ bool solve(void) {
 
 int main(void) {
   ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
+  cin.tie(nullptr);
 
 
   bool ans = solve();
