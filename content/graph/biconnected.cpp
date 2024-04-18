@@ -1,20 +1,20 @@
 #include <IncludeTemplate.hpp>
 
 struct BCC_ans {
-  uint n_comps; // number of biconnected components
+  ull n_comps; // number of biconnected components
   vu edges_comp; // component of each edge or inf if bridge
-  vector<set<uint>> nodes_comp; // component of each node
+  vector<set<ull>> nodes_comp; // component of each node
 
-  BCC_ans(uint n, uint m) : n_comps(0), edges_comp(m, inf), nodes_comp(n) {}
+  BCC_ans(ull n, ull m) : n_comps(0), edges_comp(m, inf), nodes_comp(n) {}
 };
 
-BCC_ans BCC(uint n, const vuu& edges) {
-  uint m = edges.size();
+BCC_ans BCC(ull n, const vuu& edges) {
+  ull m = edges.size();
   vu num(n), st;
   vector<vector<uu>> ed(n);
-  uint Time = 0;
+  ull Time = 0;
 
-  uint eid = 0;
+  ull eid = 0;
   for (auto [a, b] : edges) {
     ed[a].emplace_back(b, eid);
     ed[b].emplace_back(a, eid++);
@@ -22,8 +22,8 @@ BCC_ans BCC(uint n, const vuu& edges) {
 
   BCC_ans ans(n, m);
 
-  function<uint(uint, uint)> dfs = [&](uint at, uint par){
-    uint me = num[at] = ++Time, e, y, top = me;
+  function<ull(ull, ull)> dfs = [&](ull at, ull par){
+    ull me = num[at] = ++Time, e, y, top = me;
     for (auto pa : ed[at]) if (pa.second != par) {
       tie(y, e) = pa;
       if (num[y]) {
@@ -31,14 +31,14 @@ BCC_ans BCC(uint n, const vuu& edges) {
         if (num[y] < me)
           st.push_back(e);
       } else {
-        uint si = st.size();
-        uint up = dfs(y, e);
+        ull si = st.size();
+        ull up = dfs(y, e);
         top = min(top, up);
         if (up == me) {
           st.push_back(e);
           {
             vu comp(st.begin() + si, st.end());
-            for (uint e : comp) {
+            for (ull e : comp) {
               ans.edges_comp[e] = ans.n_comps;
               auto [u, v] = edges[e];
               ans.nodes_comp[u].insert(ans.n_comps);
@@ -69,13 +69,13 @@ BCC_ans BCC(uint n, const vuu& edges) {
   return ans;
 };
 
-BCC_ans BCC_multiedges(uint n, vuu edges) { // BCC for graphs with multiple edges and self loops
-  uint m = edges.size();
+BCC_ans BCC_multiedges(ull n, vuu edges) { // BCC for graphs with multiple edges and self loops
+  ull m = edges.size();
 
   map<uu, vu> repeated_edges;
   vu self_loops;
 
-  map<uu, uint> edges_map;
+  map<uu, ull> edges_map;
   fore(e, 0, m) {
     auto& [u, v] = edges[e];
     if (u == v) {
@@ -107,7 +107,7 @@ BCC_ans BCC_multiedges(uint n, vuu edges) { // BCC for graphs with multiple edge
   ans.nodes_comp = simp_ans.nodes_comp;
 
   fore(e_, 0, edges_.size()) {
-    uint e = edges_original_id[e_];
+    ull e = edges_original_id[e_];
     if (simp_ans.edges_comp[e_] != inf) {
       ans.edges_comp[e] = simp_ans.edges_comp[e_];
     }
@@ -115,8 +115,8 @@ BCC_ans BCC_multiedges(uint n, vuu edges) { // BCC for graphs with multiple edge
 
   for (auto& [uv, es] : repeated_edges) {
     auto [u, v] = uv;
-    uint common_comp = inf;
-    for (uint comp : ans.nodes_comp[u]) {
+    ull common_comp = inf;
+    for (ull comp : ans.nodes_comp[u]) {
       if (ans.nodes_comp[v].count(comp)) {
         common_comp = comp;
         break;
@@ -125,18 +125,18 @@ BCC_ans BCC_multiedges(uint n, vuu edges) { // BCC for graphs with multiple edge
     if (common_comp == inf) {
       common_comp = ans.n_comps;
       ans.n_comps++;
-      for (uint e : es) {
+      for (ull e : es) {
         ans.edges_comp[e] = common_comp;
       }
       ans.edges_comp[edges_map[uv]] = common_comp;
     } else {
-      for (uint e : es) {
+      for (ull e : es) {
         ans.edges_comp[e] = common_comp;
       }
     }
   }
 
-  for (uint e : self_loops) {
+  for (ull e : self_loops) {
     ans.edges_comp[e] = ans.n_comps;
     ans.nodes_comp[edges[e].first].insert(ans.n_comps);
     ans.n_comps++;
