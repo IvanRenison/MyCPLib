@@ -51,7 +51,7 @@ const ull inf = 1ull << 60;
 const ld eps = 1e-7;
 
 
-void solve1(void) {
+void solve(void) {
 
 }
 
@@ -65,7 +65,7 @@ int main(void) {
   fore(i, 0, t) {
 
 
-    auto ans = solve1();
+    auto ans = solve();
     cout << ans << '\n';
   }
 

@@ -51,7 +51,7 @@ const ull inf = 1ull << 60;
 const ld eps = 1e-7;
 
 
-bool solve1(void) {
+bool solve(void) {
 
 }
 
@@ -65,7 +65,7 @@ int main(void) {
   fore(i, 0, t) {
 
 
-    bool ans = solve1();
+    bool ans = solve();
     if (ans) {
       cout << "Yes\n";
     } else {
