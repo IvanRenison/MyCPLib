@@ -3,14 +3,6 @@
 #include <IncludeTemplate.hpp>
 
 // Based on ModularArithmetic of kactl
-
-ll euclid(ll a, ll b, ll& x, ll& y) {
-  if (!b)
-    return x = 1, y = 0, a;
-  ll d = euclid(b, a % b, y, x);
-  return y -= a / b * x, d;
-}
-
 constexpr ull mod = (1e9 + 7);
 struct Mod {
   ull x;
@@ -60,16 +52,20 @@ struct Mod {
   }
 
   Mod invert(Mod a) const {
-    ll x, y, g = euclid(a.x, mod, x, y);
-    assert(g == 1);
-    return Mod((x + mod) % mod);
+    Mod r = a ^ (mod - 2);
+    return r;
   }
   Mod operator^(ull e) const {
-    if (!e)
-      return Mod(1);
-    Mod r = *this ^ (e / 2);
-    r = r * r;
-    return e & 1 ? *this * r : r;
+    Mod r = Mod(1);
+    Mod b = *this;
+    while (e > 0) {
+      if (e & 1) {
+        r *= b;
+      }
+      b *= b;
+      e /= 2;
+    }
+    return r;
   }
   Mod operator/(Mod b) const {
     return *this * invert(b);
