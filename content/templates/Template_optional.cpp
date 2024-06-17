@@ -68,5 +68,4 @@ int main(void) {
     cout << "-1\n";
   }
 
-  return EXIT_SUCCESS;
 }

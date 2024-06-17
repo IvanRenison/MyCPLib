@@ -63,5 +63,4 @@ int main(void) {
   auto ans = solve();
   cout << ans << '\n';
 
-  return EXIT_SUCCESS;
 }

@@ -67,5 +67,4 @@ int main(void) {
     cout << "No\n";
   }
 
-  return EXIT_SUCCESS;
 }

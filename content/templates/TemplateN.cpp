@@ -69,5 +69,4 @@ int main(void) {
     cout << ans << '\n';
   }
 
-  return EXIT_SUCCESS;
 }
