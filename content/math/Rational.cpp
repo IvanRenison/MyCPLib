@@ -2,6 +2,10 @@
 
 #include <IncludeTemplate.hpp>
 
+template <typename T> ll signum(T val) {
+  return (T(0) < val) - (val < T(0));
+}
+
 struct Ratio {
   ll num;
   ull den;
@@ -70,6 +74,10 @@ struct Ratio {
   }
 };
 
-ll signum(Ratio n) {
-  return signum(n.num);
-}
+typedef vector<Ratio> vr;
+typedef pair<Ratio, Ratio> rr;
+typedef vector<rr> vrr;
+typedef tuple<Ratio, Ratio, Ratio> rrr;
+typedef vector<rrr> vrrr;
+typedef tuple<Ratio, Ratio, Ratio, Ratio> rrrr;
+typedef vector<rrrr> vrrrr;
