@@ -17,16 +17,6 @@ struct Matrix {
     data = vector<T>(n * m, val);
   }
 
-  Matrix(istream& in) {
-    in >> n >> m;
-    data = vector<T>(n * m);
-    fore(i, 0, n) {
-      fore(j, 0, m) {
-        in >> this[{i, j}];
-      }
-    }
-  }
-
   vuu neighbors(ull i, ull j) {
     vuu ans;
     if (i > 0) {
@@ -53,11 +43,10 @@ struct Matrix {
     data[j * n + i] = val;
   }
 
-  requires(!is_same<T, bool>::value)
-  T& operator[](uu p) {
+/*   T& operator[](uu p) { // Only if T is not bool
     auto [i, j] = p;
     return data[j * n + i];
-  }
+  } */
 };
 
 /* Make dfs from (i, j) and return all the positions visited */
