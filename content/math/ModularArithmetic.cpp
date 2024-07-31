@@ -3,7 +3,7 @@
 #include <IncludeTemplate.hpp>
 
 // Based on ModularArithmetic of kactl
-constexpr ull mod = (1e9 + 7); // Prime number for division to work
+//constexpr ull mod = (1e9 + 7); // Prime number for division to work
 struct Mod {
   ull x;
   Mod(ull xx) : x(xx % mod) {}
