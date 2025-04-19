@@ -1,3 +1,5 @@
+# Run this file with `python gen_snippets.py` and put the `./snippets/cpp.json` file in `${workspaceFolder}/.vscode/mylib.code-snippets`
+
 import os, json
 from typing import TypedDict
 
